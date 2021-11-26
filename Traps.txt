@@ -1,0 +1,96 @@
+You enter the room and look around.
+The room is empety, except for a staircase towering up towards a door.
+You start to make your way up the staircase, but when you're about half way up you hear a loud click.
+Confused you look around, at first it seems fine.
+SWOSH
+Suddenly all the steps falls down creating a ramp, and a floor hatch opens at the bottom.
+You struggle to hold on, but the ramp is to slippery.
+You slide all the way down and fall in to the hatch.
+With a loud thud you hit the floor.
+...
+...
+You will certainly feel that tomorrow.
+You look up and see the hatch close, and once again you find yourself in a room with three doors.
+-1 HP
+
+You enter the room and hear a pleasant clinging sound.
+You look down to find that the floor is covered in gold coins.
+You open your backpack and start filling it with coins.
+but after only a few seconds you notice something strange...
+all the coins are starting to slide towards the center, like they're draining away.
+It gets faster and faster, and you realize what is happening. 
+The floor is opening up.
+You tunr around and dash towards the door only to realize there is no door anymore.
+The wall has closed.
+A milion thughts rush through your head, how do you get out?
+but before you figure something out you're alreaddy falling.
+you land on a floor made out of iron bars, all the coins fall right through.
+as you lay there you see them all fall down in to the water bellow.
+You stand up, with no coins and your body hurts like hell.
+-1HP
+
+You enter the room and the first thing you notice is a large pit.
+On the other side you se a door and a table with something on it.
+It's a sword, it looks sharp and is proabably better than the one you have.
+There is a rope dangeling from the roof, you could use it to get to the other side.
+You give the rope a few tugs, it seems to be sturdy enough but you figure it's a trap.
+However, the door is locked. You grab your weapon and try to get the door open.
+It wont budge.
+You return to the rope, the only way is forward.
+As you swing across the rope gets longer!
+The rope is now to long to get you safely to the other side, and you instead slam in to the wall of the pit.
+Starteled, you stand up at the bottom of the pit.
+There is a door.
+You enter it.
+-1 HP
+You find yourself in another room with three doors.
+
+You enter the door and you're faced with a long corridior.
+You walk down the corridor and end up att a shaft that goes both upp and down.
+The walls of the shaft are covered in ladders of various lengths.
+You figure that the best way to get out of this place is to go upp.
+You're about two thirds of the way upp, but the ladder you're currently on feels a bit shaky.
+The ladder falls off the wall, and so do you. You fall down the entire shaft and land at the bottom wiht a thud.
+After getting back on your feet you look upp, you wont be able to get back to the top with that missing ladder.
+And you do not trust the other ladders to get you back the way you came.
+Instead you look around only to find yourself in another room with three doors...
+-1 HP
+
+You are faced with a corridor, that for once seems rather normal.
+In the end there is a door, and so you start walking towards it.
+After getting about half way there, you hear a click.
+You look down to find that you have stepped on a pressure plate.
+And before you have time to react, you see a dart sticking out of your leg.
+You quickly pull it out.
+After closer inspection, you notice that the dart is filled with poison.
+Luckely, the mechanism to realese the poision didn't activate.
+Your leg still hurts though....
+-1 HP
+
+You enter a room with wodden floor.
+there is a pit with water in the end deviding the room in to two sections.
+There is a drawing on the wall showing a side view of the room.
+Acording to the drawing, if you use a fishing rod to pull at the mechanism under the water, it will raise a bridge.
+There just happends to be a fishing rod next to the drawing.
+A chalenging task, but not impossible.
+You grab the rod and throw your line in to the water.
+After a few tries you manage to catch the mechanism.
+You give the rod a pull, and you hear some sort of mechanical sound.
+Before you know it, a spring in the ground shoots you in the air.
+The rod, still stuck to the mechanism in the water makes you fly in an arc towards the other side.
+You slam in to the ground.
+Even though it wasn't a bridge, you're still on the other side.
+Mayby not in one piece, but close enough.
+-1 HP
+
+Upon entering the room you are faced with a long ramp leading to a door.
+You start walking towards it.
+About halfway there, you trip over something.
+You stand up and check what you tripped on.
+It was a tripwire.
+Suddenly you hear the sound from hundreds of stone marbles crashing against the floor.
+you look up towards the sound, only to see all the marbles tumbeling down towards you.
+Before you get the time to react, you are once again on the floor tumbeling down the ramp together with the marbles.
+Once you reach the bottom you slam in to the wall.
+-1 HP
+You stand up and walk back up the ramp, this time without incident.

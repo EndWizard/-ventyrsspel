@@ -1,0 +1,17 @@
+
+Sword
+    It's like a stick, but sharp! Maybe be carefull with this...
+Axe
+    A bit heavy, but it should do some damage.
+Spear
+    It's long and pointy, should come in handy!
+Hammer
+    I don't see any nails around here... Do you?
+Dagger
+    So you prefer close combat?
+Mace
+    You should be able to smash some skulls with this thing!
+Extra hard stick
+    It's a stick! But *extra* hard
+Throwing knives
+    Despite the name, you do not actually need to throw them. (cool right?)
