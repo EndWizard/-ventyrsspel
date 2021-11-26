@@ -29,7 +29,7 @@ class monster():
 
 class Player():
     def __init__(self, name):
-        self.HP = 1 #ska vara 10
+        self.HP = 10
         self.STR = 3
         self.LVL = 0
         self.eqipped = 0
@@ -38,13 +38,25 @@ class Player():
 
 
 Monsters = ["slime","goblin","dragon","orc","troll","undead","elemental","fiend/demon/devil","golem", ]
-Weapons = []
 
 def take_dmg(player1, ammount):
     player1.HP = player1.HP - ammount
-    main_room(player1)
+    return
 
 def intro():
+    title = input("Skip title screen? [y/n] :").casefold()
+    if title == "n":
+        f = open("Title_card.txt")
+        lines = f.readlines()
+        for i in range(len(lines)):
+            content = lines[i].strip("\n")
+            print(content)
+            time.sleep(0.5)
+    elif title == "y":
+        print("")
+    else:
+        print("")
+
     name = input("\n\nWhat is your name travler? :")
     rusty_sword = Weapon("Rusty Shortsword","It's a rusty old sword you found on the ground...",1)
     player1 = Player(name)
@@ -63,15 +75,12 @@ def main_room(player1):
     door2 = rand.randint(1,3)
     door3 = rand.randint(1,3)
 
-    player_is_alive = True
-     if player1.HP <= 0:
-      player_is_alive = False
-    
-    while player_is_alive == True:
-        
-alse
-        
 
+      
+
+    
+    while player1.HP >= 1:
+    
         print("\n~~~Dungeon room(or something more creative later on)~~~\n\n1 Explore [E]    2 Check stats [S]\n3 Check backpack [B]")
         goto = input("\nSelect menu option :")
         if goto == "e":
@@ -108,6 +117,9 @@ alse
                 warp_room(player1,1)
         if goto == "b":
             backpack(player1)
+        if goto == "s":
+            stats(player1)
+    print("lol u dieded")
 
 
 def warp_room(player1, door):
@@ -248,14 +260,19 @@ def trap_room(player1):
         time.sleep(3)
     f.close()
     take_dmg(player1,1)
-    main_room(player1)
+    return
 def battle_room(player1,monster):
     print("empetyness :P")
-    main_room(player1)
 
 
 
-
+def stats(player1):
+    print(f"Name = {player1.name}")
+    print(f"Level = {player1.LVL}")
+    print(f"Health = {player1.HP} hp")
+    print(f"Strength (total) = {player1.STR + player1.eqipped.strength} str")
+    print(f"Body = {player1.STR} STR")
+    print(f"Weapon = {player1.eqipped.strength} STR")
 
 
 def door_ascii():
