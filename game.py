@@ -20,7 +20,7 @@ class Junk():
         self.type = "junk"
         self.description = "This item is useless... Why do you hold on to it?"
 
-class monster():
+class Monster():
     def __init__(self, type, str):
         self.type = type
         self.strength = str
@@ -37,9 +37,8 @@ class Player():
         self.name = name
 
 
-Monsters = ["slime","goblin","dragon","orc","troll","undead","elemental","fiend/demon/devil","golem", ]
 
-def take_dmg(player1, ammount):
+def pain_room(player1, ammount):
     player1.HP = player1.HP - ammount
     return
 
@@ -71,23 +70,25 @@ def intro():
     main_room(player1)
 
 def main_room(player1):
-    door1 = 2 #rand.randint(1,3)
-    door2 = rand.randint(1,3)
-    door3 = rand.randint(1,3)
-
-
-      
+    if player1.HP > 1:
+        door1 = 2 #rand.randint(1,3)
+        door2 = rand.randint(1,3)
+        door3 = rand.randint(1,3)
+    else:
+        door1 = rand.randint(1,2)
+        door2 = rand.randint(1,2)
+        door3 = rand.randint(1,2)
 
     
     while player1.HP >= 1:
     
         print("\n~~~Dungeon room(or something more creative later on)~~~\n\n1 Explore [E]    2 Check stats [S]\n3 Check backpack [B]")
-        goto = input("\nSelect menu option :")
+        goto = input("\nSelect menu option :").lower()
         if goto == "e":
             time.sleep(1)
             print("\n you approach three doors.")
             time.sleep(1)
-            door = input("Wich one will you choose? [Left/Middle/Right] :")
+            door = input("Wich one will you choose? [Left/Middle/Right] :").lower()
             if door == "left" or door == "l":
                 time.sleep(1)
                 door_ascii()
@@ -126,9 +127,9 @@ def warp_room(player1, door):
     if door == 1:
         item_room(player1)
     elif door == 2:
-        trap_room(player1)
-    elif door == 3:
         monster_room(player1)
+    elif door == 3:
+        trap_room(player1)
 
 def backpack(player1):
     while True:
@@ -137,76 +138,80 @@ def backpack(player1):
         for i in player1.inv:
             print (f"|{x} {i.item}")
             x=x+1
-        menu=input("(r) Return,(d) Discard,(i) Inspect,(e) Equip,(u)Use -> ")
-        if menu in {"r","R"}:
+        menu=input("(r) Return,(d) Discard,(i) Inspect,(e) Equip,(u)Use -> ").lower()
+        if menu in {"r"}:
             break
-        elif menu in {"d","D"}:
-            choice = input(f"Choose item to discard (1-{len(player1.inv)}) -> ")
-            if choice.isdigit():
-                choice = int(choice)
-                if (1 <= choice <= len(player1.inv)):
-                    if player1.inv[choice-1] == player1.eqipped:
-                        print("You can't discard equipped weapons")
-                    else:
-                        warning = input(f"Are you sure you whant to discard {player1.inv[choice-1].item} [y/n] -> ")
-                        if warning in {"y","Y"}:
-                            print(f"You trow away your {player1.inv[choice-1].item}")
-                            player1.inv.pop(choice-1)
-                        elif warning in {"n","N"}:
-                            print(f"You deside to not throw away your {player1.inv[choice-1].item}")
+        elif menu in {"d"}:
+            while True:
+                choice = input(f"Choose item to discard (1-{len(player1.inv)}) -> ")
+                if choice.isdigit():
+                    choice = int(choice)
+                    if (1 <= choice <= len(player1.inv)):
+                        if player1.inv[choice-1] == player1.eqipped:
+                            print("You can't discard equipped weapons")
+                            break
                         else:
-                            print("wrong")
-                else:
-                    print("wrong")
-            else:
-                print("wrong")
-        elif menu in {"i","I"}:
-            choice = input(f"Choose item to inspect (1-{len(player1.inv)}) -> ")
-            if choice.isdigit():
-                choice = int(choice)
-                if (1 <= choice <= len(player1.inv)):
-                    if player1.inv[choice-1].type == "weapon":
-                        print(f"\n{player1.inv[choice-1].item}")
-                        print(f"{player1.inv[choice-1].desc}")
-                        print(f"+{player1.inv[choice-1].strength} strength")
-                        input("\npress enter to continue")
-                    else:
-                        print(f"\n{player1.inv[choice-1].item}")
-                        print(player1.inv[choice-1].description)
-                        input("\npress enter to continue")
-                else:
-                    print("wrong")
-            else:
-                print("wrong")
-        elif menu in {"e","E"}:
-            choice = input(f"Choose item to equip (1-{len(player1.inv)}) -> ")
-            if choice.isdigit():
-                choice = int(choice)
-                if (1 <= choice <= len(player1.inv)):
-                    warning = input(f"Are you sure you whant to change your {player1.eqipped.item} that has a strength of {player1.eqipped.strength} to your {player1.inv[choice-1].item} that has a strength of {player1.inv[choice-1].strength}? \n[y/n]-> ")
-                    if warning in {"y","Y"}:
-                        player1.eqipped = player1.inv[choice-1]
-                        print(f"You are now using {player1.eqipped.item}")
-                    elif warning in {"n","N"}:
-                        print(f"You keep your {player1.eqipped.item} equipped")
-                    else:
-                        print("wrong")
-            else:
-                print ("wrong")
-        elif menu in {"u","U"}:
+                            while True:
+                                warning = input(f"Are you sure you whant to discard {player1.inv[choice-1].item} [y/n] -> ").lower()
+                                if warning in {"y"}:
+                                    print(f"You trow away your {player1.inv[choice-1].item}")
+                                    player1.inv.pop(choice-1)
+                                    break
+                                elif warning in {"n"}:
+                                    print(f"You deside to not throw away your {player1.inv[choice-1].item}")
+                                    break
+                            break         
+        elif menu in {"i"}:
+            while True:
+                choice = input(f"Choose item to inspect (1-{len(player1.inv)}) -> ")
+                if choice.isdigit():
+                    choice = int(choice)
+                    if (1 <= choice <= len(player1.inv)):
+                        if player1.inv[choice-1].type == "weapon":
+                            print(f"\n{player1.inv[choice-1].item}")
+                            print(f"{player1.inv[choice-1].desc}")
+                            print(f"+{player1.inv[choice-1].strength} strength")
+                            input("\npress enter to continue")
+                        else:
+                            print(f"\n{player1.inv[choice-1].item}")
+                            print(player1.inv[choice-1].description)
+                            input("\npress enter to continue")
+                        break
+        elif menu in {"e"}:
+            while True:
+                choice = input(f"Choose item to equip (1-{len(player1.inv)}) -> ")
+                if choice.isdigit():
+                    choice = int(choice)
+                    if (1 <= choice <= len(player1.inv)):
+                        if player1.inv[choice-1].type == "weapon":
+                            while True:
+                                warning = input(f"Are you sure you whant to change your {player1.eqipped.item} that has a strength of {player1.eqipped.strength} to your {player1.inv[choice-1].item} that has a strength of {player1.inv[choice-1].strength}? \n[y/n]-> ").lower()
+                                if warning in {"y"}:
+                                    player1.eqipped = player1.inv[choice-1]
+                                    print(f"You are now using {player1.eqipped.item}")
+                                    break
+                                elif warning in {"n"}:
+                                    print(f"You keep your {player1.eqipped.item} equipped")
+                                    break           
+                        else:
+                            print("you can't equip that")
+                        break
+
+        elif menu in {"u"}:
             print("under construction")
             """choice = input(f"Choose item to use (1-{len(player1.inv)}) -> ")
             if choice.isdigit():
                 choice = int(choice)
                 if (1 <= choice <= len(player1.inv)):
                     print("hello")"""
-        else :
-            print("Felaktigt val")
+
 
 def monster_room(player1):
-    print("Monsters :P")
+    monster_type = ["slime","goblin","dragon","orc","troll","undead","elemental","fiend/demon/devil","golem"]
+    enemy = Monster(monster_type[rand.randint(0,8)],rand.randint(1,10)) 
+    battle_room(player1,enemy)
+    return
     
-
 def item_room(player1):
     print("Interesting story goes here, you find a chest or smth")
     mimic = rand.randint(1,10)
@@ -259,10 +264,72 @@ def trap_room(player1):
         print(lines[story_start+i])
         time.sleep(3)
     f.close()
-    take_dmg(player1,1)
-    return
-def battle_room(player1,monster):
-    print("empetyness :P")
+    pain_room(player1,1)
+    
+def battle_room(player1, monster):
+    print(f"A {monster.type} appears!")
+    time.sleep(2)
+    relative_str = monster.strength - (player1.STR + player1.eqipped.strength)
+    if relative_str < 0:            
+        print("It looks rather weak")
+        chance = "100%"
+    elif relative_str <=2:
+        print("It looks rather strong, but you might be able to take it...")
+        chance = "40%"
+    else:
+        print("It looks very strong! Taking on this monster will be difficult.")
+        chance = "10%"
+    time.sleep(2)
+    print("\nWhat do you want to do?")
+    print(f"\n[f]Fight[{chance} success]")
+    print(f"[r]Run![-1 HP]")
+    fight = input(f"\nChoose :").lower()
+    if fight == "fight" or fight == "f":
+        if chance == "100%":
+            f = open("MonsterWin.txt")
+            damage = "n"
+        elif chance == "40%":
+            win = rand.randint(1,5)
+            if win > 3:
+                f = open("MonsterWin.txt")
+                damage ="n"
+            else:
+                f = open("MonsterDmg.txt")
+                damage = "y"
+        elif chance == "10%":
+            win = rand.randint(1,10)
+            if win == 4:
+                f = open("MonsterWin.txt")
+                damage ="n"
+            else:
+                f = open("MonsterDmg.txt")
+                damage ="y"
+
+        lines = f.readlines()
+        if monster.type == "slime":
+            story_start = 0
+            story_duration = 3
+        elif monster.type == "dragon":
+            print("under construction")
+        else:
+            print("Under construction")
+        for i in range(story_duration):
+            print(lines[story_start+i])
+            time.sleep(3)
+            f.close()
+        if damage == "y":
+            pain_room(player1,2)
+        else:
+            return
+    elif fight == "run" or fight == "r": 
+        print("\nYou don't risk it, and instead you make a dash for the door.")
+        time.sleep(2)
+        print("However, while dashing for the exit you trip on a rock")
+        time.sleep(1)
+        print("You scrape your knee")
+        time.sleep(1)
+        print("-1HP")
+        pain_room(player1,1)
 
 
 
@@ -282,8 +349,7 @@ def door_ascii():
     door_content.close()
     return
 
-def generate_monster():
-    print("nope")
+
 
 def generate_item():
     print("nope")
@@ -309,8 +375,8 @@ def loot_check(player1,content):
         player1.inv.append(content)
     else :
         while True:
-            anser = input(f"your inventory is full, do you whant to discard an item to pick up {content.item} [y/n] -> ")
-            if anser in {"y","Y"}:
+            anser = input(f"your inventory is full, do you whant to discard an item to pick up {content.item} [y/n] -> ").lower()
+            if anser in {"y"}:
                 x=1
                 for i in player1.inv:
                     print (f"|{x} {i.item}")
@@ -322,15 +388,15 @@ def loot_check(player1,content):
                         if player1.inv[choice-1] == player1.eqipped:
                             print("You can't discard equipped weapons")
                         else:
-                            warning = input(f"Are you sure you whant to discard {player1.inv[choice-1].item} for {content.item} [y/n] -> ")
-                            if warning in {"y","Y"}:
+                            warning = input(f"Are you sure you whant to discard {player1.inv[choice-1].item} for {content.item} [y/n] -> ").lower()
+                            if warning in {"y"}:
                                 print(f"You trow away your {player1.inv[choice-1].item} and pick upp the {content.item}")
                                 player1.inv.pop(choice-1)
                                 player1.inv.append(content)
                                 break
-                            elif warning in {"n","N"}:
+                            elif warning in {"n"}:
                                 print(f"You deside to not throw away your {player1.inv[choice-1].item}")
-            if anser in {"n","N"}:
+            if anser in {"n"}:
                 print(f"you leave the {content.item} behind")
                 break
 
