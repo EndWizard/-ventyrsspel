@@ -1,0 +1,4 @@
+Potion of Healing
+    A strange red liqid... You should toatally drink it!
+Potion of Poison
+    Bet you will do some extra damage with this on your sword!
