@@ -6,27 +6,27 @@ def backpack(player1):
         for i in player1.inv:
             print (f"|{x} {i.item}")
             x=x+1
-        menu=input("(r) Return,(t) Throw away,(i) Inspect,(e) Equip,(d)drink -> ").lower()
+        menu=input("(r) Return,(d) Discard,(i) Inspect,(e) Equip,(u)Use -> ").lower()
         if menu in {"r"}:
             break
-        elif menu in {"t"}:
+        elif menu in {"d"}:
             while True:
-                choice = input(f"Choose item to throw away (1-{len(player1.inv)}) -> ")
+                choice = input(f"Choose item to discard (1-{len(player1.inv)}) -> ")
                 if choice.isdigit():
                     choice = int(choice)
                     if (1 <= choice <= len(player1.inv)):
                         if player1.inv[choice-1] == player1.eqipped:
-                            print("You can't throw away equipped weapons")
+                            print("You can't discard equipped weapons")
                             break
                         else:
                             while True:
-                                warning = input(f"Are you sure you whant to throw away your {player1.inv[choice-1].item} [y/n] -> ").lower()
+                                warning = input(f"Are you sure you whant to discard your {player1.inv[choice-1].item} [y/n] -> ").lower()
                                 if warning in {"y"}:
-                                    print(f"You trow away your {player1.inv[choice-1].item}")
+                                    print(f"You discard your {player1.inv[choice-1].item}")
                                     player1.inv.pop(choice-1)
                                     break
                                 elif warning in {"n"}:
-                                    print(f"You deside to not throw away your {player1.inv[choice-1].item}")
+                                    print(f"You deside to discard away your {player1.inv[choice-1].item}")
                                     break
                             break         
         elif menu in {"i"}:
@@ -66,34 +66,62 @@ def backpack(player1):
                         break
 
         elif menu in {"u"}:
-            print("under construction")
             while True:
-                choice = input(f"Choose item to drink (1-{len(player1.inv)}) -> ")
-                if choice.isdigit():
-                    choice = int(choice)
-                    if (1 <= choice <= len(player1.inv)):
-                        if player1.inv[choice-1].type == "potion":
-                            while True:
-                                warning = input(f"Are you sure you whant to drink your {player1.inv[choice-1].item}? \n[y/n]-> ").lower()
-                                if warning in {"y"}:
-                                    print(f"You deside to drink your {player1.inv[choice-1].item}")
-                                    if player1.inv[choice-1].item == "Potion of Healing":
-                                        print("+1 HP")
-                                        player1.HP = player1.HP + 1
-                                        player1.inv.pop(choice-1)
-                                        break
-                                    elif player1.inv[choice-1].item == "Potion of Poison":
-                                        print("why did you drink this\n -2 HP")
-                                        player1.HP = player1.HP - 2
-                                        player1.inv.pop(choice-1)
-                                        break
-                                    else:
-                                        print("unkown potion")
-                                        break
-                                        
-                                elif warning in {"n"}:
-                                    print(f"You don't drink your {player1.inv[choice-1].item}")
-                                    break           
-                        else:
-                            print("you can't drink that dummy")
-                        break
+                use = input ("what do you whant to do? [d]Drink,[c]Coat weapon -> ").lower()
+                if use in {"d"}:
+                    while True:
+                        choice = input(f"Choose item to drink (1-{len(player1.inv)}) -> ")
+                        if choice.isdigit():
+                            choice = int(choice)
+                            if (1 <= choice <= len(player1.inv)):
+                                if player1.inv[choice-1].type == "potion":
+                                    while True:
+                                        warning = input(f"Are you sure you whant to drink your {player1.inv[choice-1].item}? \n[y/n]-> ").lower()
+                                        if warning in {"y"}:
+                                            print(f"You deside to drink your {player1.inv[choice-1].item}")
+                                            if player1.inv[choice-1].item == "Potion of Healing":
+                                                print("+1 HP")
+                                                player1.HP = player1.HP + 1
+                                                player1.inv.pop(choice-1)
+                                                break
+                                            elif player1.inv[choice-1].item == "Potion of Poison":
+                                                print("why did you drink this\n -2 HP")
+                                                player1.HP = player1.HP - 2
+                                                player1.inv.pop(choice-1)
+                                                break
+                                            else:
+                                                print("unkown potion")
+                                                break
+                                                
+                                        elif warning in {"n"}:
+                                            print(f"You don't drink your {player1.inv[choice-1].item}")
+                                            break           
+                                else:
+                                    print("you can't drink that dummy")
+                                break
+                elif use in {"c"}:
+                    while True:
+                        potion = input (f"Choose item to coat your {player1.eqipped.item} with (1-{len(player1.inv)}) -> ")
+                        if choice.isdigit():
+                            choice = int(choice)
+                            if (1 <= choice <= len(player1.inv)):
+                                if player1.inv[choice-1].type == "potion":
+                                    while True:
+                                        warning = input(f"Are you sure you whant to coat your {player1.eqipped.item} with {player1.inv[choice-1].item}? \n[y/n]-> ").lower()
+                                        if warning in {"y"}:
+                                            print(f"You deside use a {player1.inv[choice-1].item} on your weapon")
+                                            if player1.inv[choice-1].item == "Potion of Healing":
+                                                print("That doesn't seem smart")
+                                                player1.eqipped.potion_boost = -2
+                                                player1.inv.pop(choice-1)
+                                                break
+                                            elif player1.inv[choice-1].item == "Potion of Poison":
+                                                print("why did you drink this\n -2 HP")
+                                                player1.eqipped.potion_boost = 2
+                                                player1.inv.pop(choice-1)
+                                                break
+                                            else:
+                                                print("unkown potion")
+                                                break
+                                                
+

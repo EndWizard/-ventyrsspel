@@ -5,10 +5,16 @@ from pain import pain_room
 def monster_room(player1):
     if player1.LVL <=9:
         monster_type = ["slime","goblin","dragon","orc","troll","undead","elemental","fiend/demon/devil","golem"]
-        enemy = Monster(monster_type[rand.randint(0,8)],rand.randint(1,10)) 
+        strength_index = rand.randint(1,6)
+        if strength_index > 5:
+            enemy_str = player1.STR + rand.randint(-2,3)
+        else:
+            enemy_str = player1.STR + rand.randint(-1,6)
+
+        enemy = Monster(monster_type[rand.randint(0,8)],enemy_str) 
         battle_room(player1,enemy)
     else:
-        boss_type = ["old gnawbone","achererach"]
+        boss_type = ["old gnawbone","achererach","ingvar kamprad","furry"]
         battle_room(player1,Monster[rand.randint(0,1)],15)
     return
 
