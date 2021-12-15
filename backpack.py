@@ -116,7 +116,7 @@ def backpack(player1):
                                                 player1.inv.pop(choice-1)
                                                 break
                                             elif player1.inv[choice-1].item == "Potion of Poison":
-                                                print("why did you drink this\n -2 HP")
+                                                print("This will pack a punch")
                                                 player1.eqipped.potion_boost = 2
                                                 player1.inv.pop(choice-1)
                                                 break
