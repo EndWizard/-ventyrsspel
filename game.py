@@ -7,7 +7,7 @@ from trap import trap_room
 from Classes import Player, Potion, Weapon
 
 
-#Theese two are gonna be for saving the game and stuff (exiting)
+#Theese two are gonna be for saving the game and stuff (exciting)
 def load_game():
     print("nothing here yet")
 

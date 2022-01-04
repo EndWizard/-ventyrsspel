@@ -3,26 +3,27 @@ import random as rand
 from Classes import Monster
 from pain import pain_room
 def monster_room(player1):
-    if player1.LVL <=9:
-        monster_type = ["slime","goblin","dragon","orc","troll","undead","elemental","fiend/demon/devil","golem"]
+    if player1.LVL <=9: #Depending on the players level, this if code might give you a "boss battle"
+        monster_type = ["slime","goblin","dragon","troll","undead","demon","golem"] #List of all monster types
+        #The strength_index determines weater the player will encounter a weaker or a stronger monster.
         strength_index = rand.randint(1,6)
         if strength_index > 5:
             enemy_str = player1.STR + rand.randint(-2,3)
         else:
             enemy_str = player1.STR + rand.randint(-1,6)
-
+        #Finnaly, the enemy is created by selecting a random monster type + giving it the strength previosuly generated
         enemy = Monster(monster_type[rand.randint(0,8)],enemy_str) 
         battle_room(player1,enemy)
-    else:
-        boss_type = ["old gnawbone","achererach","ingvar kamprad","furry"]
+    else: 
+        boss_type = ["old gnawbone","achererach","ingvar kamprad"]
         battle_room(player1,Monster[rand.randint(0,1)],15)
     return
 
 def battle_room(player1, monster):
     print(f"A {monster.type} appears!")
     time.sleep(2)
+        #Uses relative_str to check chance of winning
     relative_str = monster.strength - (player1.STR + player1.eqipped.strength + player1.eqipped.potion_boost)
-    #Uses relative_str to check chance of winning + message
     if relative_str < 0:            
         print("It looks rather weak")
         chance = "100%"
@@ -39,8 +40,10 @@ def battle_room(player1, monster):
     print(f"\n[f]Fight[{chance} success]")
     print(f"[r]Run![-1 HP]")
     fight = input(f"\nChoose :").lower()
+    #The following if code will randomize the outcome of the battle. Win = Open the document with winning stories
+    #lose = open document with losing stories
     if fight == "fight" or fight == "f":
-        if chance == "100%":
+        if chance == "100%": 
             f = open("MonsterWin.txt")
             damage = "n"
         elif chance == "40%":
@@ -59,15 +62,24 @@ def battle_room(player1, monster):
             else:
                 f = open("MonsterDmg.txt")
                 damage ="y"
-
-        lines = f.readlines()
-        if monster.type == "slime":
+#"story checklist"
+#dragon DONE
+#demon DONE
+#slime DONE
+#goblin
+#troll
+#undead
+#golem
+        lines = f.readlines() #After the If code opens one of the two documents, the program reads it
+        if monster.type == "slime": #
             story_start = 0
             story_duration = 3
         elif monster.type == "dragon":
-            print("under construction")
-            story_start = 0
-            story_duration = 3
+            story_start = 4
+            story_duration = 7
+        elif monster.type == "demon":
+            story_start = 12
+            story_duration = 5
         else:
             print("Under construction")
             story_start = 0
