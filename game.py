@@ -65,7 +65,7 @@ def main_room(player1):
             print("\n you approach three doors.")
             time.sleep(1)
             if player1.x_ray==True:
-                rooms= ["monster wandering around","chest standing on a pedestal","weird mechanism that seems strangely intimidating"]
+                rooms= ["chest standing on a pedestal","monster wandering around","weird mechanism that seems strangely intimidating"]
                 print(f"\nbehind the left door you see a {rooms[door1-1]}")
                 time.sleep(1)
                 print(f"behind the middle door you see a {rooms[door2-1]}")
