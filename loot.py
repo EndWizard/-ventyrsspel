@@ -5,12 +5,15 @@ from monster_room import battle_room
 
 def item_room(player1):
     print("Interesting story goes here, you find a chest or smth")
-    mimic = rand.randint(1,10)
+    mimic =rand.randint(1,10)
+    save = player1.HP
     if mimic == 10: #checks if the chest is a mimic
         print("mimic stuff")
         battle_room(player1,Monster("Mimic",rand.randint(1,10)))
-
-    else: 
+        
+        
+    
+    if save == player1.HP: 
         item_type = rand.randint(1,10) 
         if item_type < 6:
             content = generate_weapon()
@@ -21,11 +24,12 @@ def item_room(player1):
         elif 8 < item_type:
             content = generate_junk()
             loot_check(player1,content)
+    
 
 def generate_Potion():
     f = open("Potions.txt")
     potions = f.readlines()
-    potion_select = rand.randint(1,2)
+    potion_select = rand.randint(1,3)
     potion_type = ((potion_select*2)-2)
     potion = Potion(potions[potion_type].strip("\n"),potions[potion_type +1].strip("\n"))
     print(f"You discover a {potion.item}")
@@ -36,7 +40,14 @@ def generate_weapon():
     lines = f.readlines()
     type = rand.randint(1,8)
     weapon_type = ((type*2)-1)
-    chest_content = Weapon(lines[weapon_type].strip("\n"), lines[weapon_type+1].strip("\n"),rand.randint(1,10))
+    str_index = rand.randint(1,10)
+    if str_index <= 6:
+        weapon_str = rand.randint(1,3)
+    elif str_index > 6:
+        weapon_str = rand.randint(1,6)
+
+
+    chest_content = Weapon(lines[weapon_type].strip("\n"), lines[weapon_type+1].strip("\n"),weapon_str)
     print(f"You open the chest to discover a {chest_content.item} with a strength of {chest_content.strength}")
     return chest_content
 

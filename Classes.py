@@ -32,3 +32,4 @@ class Player():
         self.eqipped = 0
         self.inv = []
         self.name = name
+        self.x_ray = False

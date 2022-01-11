@@ -12,7 +12,7 @@ def monster_room(player1):
         else:
             enemy_str = player1.STR + rand.randint(-1,6)
         #Finnaly, the enemy is created by selecting a random monster type + giving it the strength previosuly generated
-        enemy = Monster(monster_type[rand.randint(0,8)],enemy_str) 
+        enemy = Monster(monster_type[rand.randint(0,6)],enemy_str) 
         battle_room(player1,enemy)
     else: 
         boss_type = ["old gnawbone","achererach","ingvar kamprad"]
@@ -39,74 +39,83 @@ def battle_room(player1, monster):
     print("\nWhat do you want to do?")
     print(f"\n[f]Fight[{chance} success]")
     print(f"[r]Run![-1 HP]")
-    fight = input(f"\nChoose :").lower()
-    #The following if code will randomize the outcome of the battle. Win = Open the document with winning stories
-    #lose = open document with losing stories
-    if fight == "fight" or fight == "f":
-        if chance == "100%": 
-            f = open("MonsterWin.txt")
-            damage = "n"
-        elif chance == "40%":
-            win = rand.randint(1,5)
-            if win > 3:
+    while True:
+        fight = input(f"\nChoose :").lower()
+        #The following if code will randomize the outcome of the battle. Win = Open the document with winning stories
+        #lose = open document with losing stories
+        if fight == "fight" or fight == "f":
+            if chance == "100%": 
                 f = open("MonsterWin.txt")
-                damage ="n"
+                damage = "n"
+            elif chance == "40%":
+                win = rand.randint(1,5)
+                if win > 3:
+                    f = open("MonsterWin.txt")
+                    damage ="n"
+                else:
+                    f = open("MonsterDmg.txt")
+                    damage = "y"
+            elif chance == "10%":
+                win = rand.randint(1,10)
+                if win == 4:
+                    f = open("MonsterWin.txt")
+                    damage ="n"
+                else:
+                    f = open("MonsterDmg.txt")
+                    damage ="y"
+    #"story checklist"
+    #dragon DONE
+    #demon DONE
+    #slime DONE
+    #goblin
+    #troll
+    #undead
+    #Mimic
+    #golem DONE
+            lines = f.readlines() #After the If code opens one of the two documents, the program reads it
+            if monster.type == "slime": #
+                story_start = 0
+                story_duration = 3
+            elif monster.type == "dragon":
+                story_start = 4
+                story_duration = 7
+            elif monster.type == "demon":
+                story_start = 12
+                story_duration = 5
+            elif monster.type == "golem":
+                story_start = 18
+                story_duration = 6
             else:
-                f = open("MonsterDmg.txt")
-                damage = "y"
-        elif chance == "10%":
-            win = rand.randint(1,10)
-            if win == 4:
-                f = open("MonsterWin.txt")
-                damage ="n"
+                print("Under construction")
+                story_start = 0
+                story_duration = 3
+            for i in range(story_duration):
+                print(lines[story_start+i])
+                time.sleep(3)
+                f.close()
+            #checks if player takes damage, and removes potion boosts
+            if damage == "y":
+                player1.eqipped.potion_boost = 0 
+                pain_room(player1,2)
+                return
             else:
-                f = open("MonsterDmg.txt")
-                damage ="y"
-#"story checklist"
-#dragon DONE
-#demon DONE
-#slime DONE
-#goblin
-#troll
-#undead
-#golem DONE
-        lines = f.readlines() #After the If code opens one of the two documents, the program reads it
-        if monster.type == "slime": #
-            story_start = 0
-            story_duration = 3
-        elif monster.type == "dragon":
-            story_start = 4
-            story_duration = 7
-        elif monster.type == "demon":
-            story_start = 12
-            story_duration = 5
-        elif monster.type == "golem":
-            story_start = 18
-            story_duration = 6
-        else:
-            print("Under construction")
-            story_start = 0
-            story_duration = 3
-        for i in range(story_duration):
-            print(lines[story_start+i])
-            time.sleep(3)
-            f.close()
-        #checks if player takes damage, and removes potion boosts
-        if damage == "y":
-            player1.eqipped.potion_boost = 0 
-            pain_room(player1,2)
-        else:
-            player1.LVL = player1.LVL + 1
-            player1.eqipped.potion_boost = 0 
+                player1.LVL = player1.LVL + 1
+                player1.eqipped.potion_boost = 0 
+                return
+        elif fight == "run" or fight == "r": 
+            print("\nYou don't risk it, and instead you make a dash for the door.")
+            time.sleep(2)
+            print("However, while dashing for the exit you trip on a rock")
+            time.sleep(1)
+            print("You scrape your knee")
+            time.sleep(1)
+            print("-1HP")
+            pain_room(player1,1)
             return
-    elif fight == "run" or fight == "r": 
-        print("\nYou don't risk it, and instead you make a dash for the door.")
-        time.sleep(2)
-        print("However, while dashing for the exit you trip on a rock")
-        time.sleep(1)
-        print("You scrape your knee")
-        time.sleep(1)
-        print("-1HP")
-        pain_room(player1,1)
 
-    
+
+        else:
+            print("Thats not an option! Pull yourself together you're in a battle!")
+            time.sleep(1)
+
+        

@@ -1,6 +1,6 @@
 import time
 def backpack(player1):
-    while True:
+    while player1.HP >= 1 and player1.LVL <= 9 and player1.inv[0].type=="torch":
         print ("\n~~~~backpack~~~~\n")
         x=1
         for i in player1.inv:
@@ -64,10 +64,12 @@ def backpack(player1):
                         else:
                             print("you can't equip that")
                         break
+                elif choice in {"r","return"}:
+                    break
 
         elif menu in {"u"}:
-            while True:
-                use = input ("what do you whant to do? [d]Drink,[c]Coat weapon -> ").lower()
+            while player1.HP >= 1 and player1.LVL <= 9 and player1.inv[0].type=="torch":
+                use = input ("what do you whant to do? [d]Drink,[c]Coat weapon,[r]Return -> ").lower()
                 if use in {"d"}:
                     while True:
                         choice = input(f"Choose item to drink (1-{len(player1.inv)}) -> ")
@@ -89,6 +91,11 @@ def backpack(player1):
                                                 player1.HP = player1.HP - 2
                                                 player1.inv.pop(choice-1)
                                                 break
+                                            elif player1.inv[choice-1].item == "Potion of Seeing":
+                                                print("The world seem to change around you") 
+                                                player1.x_ray = True
+                                                player1.inv.pop(choice-1)
+                                                break
                                             else:
                                                 print("unkown potion")
                                                 break
@@ -101,7 +108,7 @@ def backpack(player1):
                                 break
                 elif use in {"c"}:
                     while True:
-                        potion = input (f"Choose item to coat your {player1.eqipped.item} with (1-{len(player1.inv)}) -> ")
+                        choice = input (f"Choose item to coat your {player1.eqipped.item} with (1-{len(player1.inv)}) -> ")
                         if choice.isdigit():
                             choice = int(choice)
                             if (1 <= choice <= len(player1.inv)):
@@ -120,8 +127,15 @@ def backpack(player1):
                                                 player1.eqipped.potion_boost = 2
                                                 player1.inv.pop(choice-1)
                                                 break
+                                            elif player1.inv[choice-1].item == "Potion of Seeing":
+                                                print("this doesn't SEEm to have an effect")
+                                                player1.inv.pop(choice-1)
+                                                break
                                             else:
                                                 print("unkown potion")
                                                 break
-                                                
-
+                                else:
+                                    print("That's not a liquid... What are you trying to accomplish")
+                                break
+                elif use in {"r"}:
+                    break

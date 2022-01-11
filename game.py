@@ -23,12 +23,13 @@ def intro():
             content = lines[i].strip("\n")
             print(content)
             time.sleep(0.5)
+        f.close
     elif title == "y":
         print("")
     else:
-        print("")
+        print("invalid input")
 
-    name = input("\n\nWhat is your name travler? :")
+    name = input("\n\nWhat is your name traveler? :")
     rusty_sword = Weapon("Rusty Shortsword","It's a rusty old sword you found on the ground...",1)
     player1 = Player(name)
     player1.eqipped = rusty_sword
@@ -45,7 +46,7 @@ def intro():
 def main_room(player1):
     
     #If you're not dead (wich you proabably are) this will be the main menu
-    while player1.HP >= 1 and player1.LVL <= 9:
+    while player1.HP >= 1 and player1.LVL <= 9 and player1.inv[0].type=="torch":
         #Generates the doors, if the player has one HP left they can't get a trap (cuz that would kinda suck)
         if player1.HP > 1:
             door1 = 2 #rand.randint(1,3)
@@ -63,6 +64,15 @@ def main_room(player1):
             time.sleep(1)
             print("\n you approach three doors.")
             time.sleep(1)
+            if player1.x_ray==True:
+                rooms= ["monster wandering around","chest standing on a pedestal","weird mechanism that seems strangely intimidating"]
+                print(f"\nbehind the left door you see a {rooms[door1-1]}")
+                time.sleep(1)
+                print(f"behind the middle door you see a {rooms[door2-1]}")
+                time.sleep(1)
+                print(f"behind the right door you see a {rooms[door3-1]}\n")
+                time.sleep(1)
+                player1.x_ray=False
             door = input("Wich one will you choose? [Left/Middle/Right] :").lower()
             if door == "left" or door == "l":
                 time.sleep(1)
@@ -92,12 +102,28 @@ def main_room(player1):
 
             elif door == "1": #test för item room ska tas bort när vi är klara
                 warp_room(player1,1)
+            else:
+                print("invalid input!")
+                time.sleep("2")
+                return
         elif goto == "b":
             backpack(player1)
         elif goto == "s":
             stats(player1)
-    print("lol u dieded")
-
+        else:
+            print("invalid input!")
+            time.sleep(2)
+    if player1.LVL ==10:
+        print("lol u won")
+    else:
+        print("lol u dieded")
+    f = open("Title_Card.txt")
+    lines = f.readlines()
+    for i in range(len(lines)):
+        content = lines[i].strip("\n")
+        print(content)
+        time.sleep(0.5)
+    f.close
 #
 def warp_room(player1, door):
     if door == 1:
