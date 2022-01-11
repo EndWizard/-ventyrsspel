@@ -69,7 +69,7 @@ def battle_room(player1, monster):
 #goblin
 #troll
 #undead
-#golem
+#golem DONE
         lines = f.readlines() #After the If code opens one of the two documents, the program reads it
         if monster.type == "slime": #
             story_start = 0
@@ -80,6 +80,9 @@ def battle_room(player1, monster):
         elif monster.type == "demon":
             story_start = 12
             story_duration = 5
+        elif monster.type == "golem":
+            story_start = 18
+            story_duration = 6
         else:
             print("Under construction")
             story_start = 0

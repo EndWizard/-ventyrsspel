@@ -15,3 +15,10 @@ After close consideration, you decide you better not.
 you swiftly slay the demon, whose death results in a strange fire and some other theatrics.
 It's proabably better this way.
 I mean, it's not like you knew how to play dice anyways.
+
+The large metallic golem blocks your path.
+Your weapon wont be able to penetrate its steel...
+After some analyzing, you deduct that the joints are the weak points.
+you thrust towards the golem, but it knocks your weapon of its path.
+You quickly charge again, and you lodge your weapon in one of the golems joints.
+You give it a quick jerk, and the arm pops right off. Oil is leaking everywhere.
