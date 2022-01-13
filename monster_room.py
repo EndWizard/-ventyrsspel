@@ -3,20 +3,16 @@ import random as rand
 from Classes import Monster
 from pain import pain_room
 def monster_room(player1):
-    if player1.LVL <=9: #Depending on the players level, this if code might give you a "boss battle"
-        monster_type = ["slime","goblin","dragon","troll","undead","demon","golem"] #List of all monster types
-        #The strength_index determines weater the player will encounter a weaker or a stronger monster.
-        strength_index = rand.randint(1,6)
-        if strength_index > 5:
-            enemy_str = player1.STR + rand.randint(-2,3)
-        else:
-            enemy_str = player1.STR + rand.randint(-1,6)
-        #Finnaly, the enemy is created by selecting a random monster type + giving it the strength previosuly generated
-        enemy = Monster(monster_type[rand.randint(0,6)],enemy_str) 
-        battle_room(player1,enemy)
-    else: 
-        boss_type = ["old gnawbone","achererach","ingvar kamprad"]
-        battle_room(player1,Monster[rand.randint(0,1)],15)
+    monster_type = ["slime","Ingvar Kamprad","dragon","troll","undead","demon","golem"] #List of all monster types
+    #The strength_index determines weater the player will encounter a weaker or a stronger monster.
+    strength_index = rand.randint(1,6)
+    if strength_index > 5:
+        enemy_str = player1.STR + rand.randint(-2,3)
+    else:
+        enemy_str = player1.STR + rand.randint(-1,6)
+    #Finnaly, the enemy is created by selecting a random monster type + giving it the strength previosuly generated
+    enemy = Monster(monster_type[rand.randint(0,6)],enemy_str) 
+    battle_room(player1,enemy)
     return
 
 def battle_room(player1, monster):
@@ -39,10 +35,11 @@ def battle_room(player1, monster):
     print("\nWhat do you want to do?")
     print(f"\n[f]Fight[{chance} success]")
     print(f"[r]Run![-1 HP]")
+
+#This if code will randomly decide if you win or loose based on the odds of winning (previously generated with relative STR)
+#The code will open one out of two documents depending on the outcome of the battle. (Loosing stories or winning stories)
     while True:
         fight = input(f"\nChoose :").lower()
-        #The following if code will randomize the outcome of the battle. Win = Open the document with winning stories
-        #lose = open document with losing stories
         if fight == "fight" or fight == "f":
             if chance == "100%": 
                 f = open("MonsterWin.txt")
@@ -67,15 +64,18 @@ def battle_room(player1, monster):
     #dragon DONE
     #demon DONE
     #slime DONE
-    #goblin
+    #ingvar kamprad DONE
     #troll
     #undead
-    #Mimic
+    #Mimic DONE
     #golem DONE
-            lines = f.readlines() #After the If code opens one of the two documents, the program reads it
-            if monster.type == "slime": #
-                story_start = 0
-                story_duration = 3
+
+    #Depending on the monster, we select wich story to read. We do not need to account for
+    #loss or victory since the stories are the same legnth in both the winn and lose document (one of which was opened earlier)
+            lines = f.readlines() 
+            if monster.type == "slime":
+                story_start = 0 #The first line of the story
+                story_duration = 3 #The duration (ammount of lines) in the story
             elif monster.type == "dragon":
                 story_start = 4
                 story_duration = 7
@@ -85,17 +85,24 @@ def battle_room(player1, monster):
             elif monster.type == "golem":
                 story_start = 18
                 story_duration = 6
+            elif monster.type == "Mimic":
+                story_start =25
+                story_duration = 4
+            elif monster.type == "Invar Kamprad":
+                story_start = 30
+                story_duration = 5
             else:
                 print("Under construction")
                 story_start = 0
                 story_duration = 3
+
             for i in range(story_duration):
                 print(lines[story_start+i])
                 time.sleep(3)
                 f.close()
-            #checks if player takes damage, and removes potion boosts
+
             if damage == "y":
-                player1.eqipped.potion_boost = 0 
+                player1.eqipped.potion_boost = 0 #After a battle the weapons potion boost is "consumed" and defaults to 0
                 pain_room(player1,2)
                 return
             else:

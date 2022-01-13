@@ -22,3 +22,15 @@ It swings its large arms and easely knocks your weapon off its intended path.
 You temporarely jump back, but you dash right back in to commbat
 however, your efforts are to no use.
 You cant penetrate the steel of the golem, and you end up being knocked down by the golem.
+
+You opened the chest to reveal an unpleasant suprise.
+It wasn't a chest at all, and you barely escaped with your hand.
+It did still manage to bite you though.
+Luckely, the mimic is slow and you manage to retreat to treat your wound.
+
+Invar kamprad tries to sell you some cheap IKEA furniture.
+You take a quick look at what he is offering.
+You decide you're not interested and try to head on your way.
+However, this angers Ingvar and he pulls out an IKEA "HJÄLTE" pasta ladle.
+He wacks you on the head and it hurts quite a bit.
+

@@ -5,14 +5,15 @@ from monster_room import battle_room
 
 def item_room(player1):
     print("Interesting story goes here, you find a chest or smth")
-    mimic =rand.randint(1,10)
-    save = player1.HP
+    mimic =rand.randint(1,10) #randomly generates a number to determine if the chest is a mimic
+    save = player1.HP #Checks the players curren HP
     if mimic == 10: #checks if the chest is a mimic
         print("mimic stuff")
-        battle_room(player1,Monster("Mimic",rand.randint(1,10)))
+        battle_room(player1,Monster("Mimic",rand.randint(1,10))) #Sends the player to the battle room with a mimic
         
         
-    
+    #If the player returns from the mimic battle with the same HP, it means they won and recieve an item from the mimic
+    #If the player never encountered a mimic, they will still recieve and item from a chest (since the only way they could lose HP is with a mimic).
     if save == player1.HP: 
         item_type = rand.randint(1,10) 
         if item_type < 6:
@@ -29,8 +30,8 @@ def item_room(player1):
 def generate_Potion():
     f = open("Potions.txt")
     potions = f.readlines()
-    potion_select = rand.randint(1,3)
-    potion_type = ((potion_select*2)-2)
+    potion_select = rand.randint(1,3) #and index used to select a potion
+    potion_type = ((potion_select*2)-2) #Equation that uses the apropriate line from the text document
     potion = Potion(potions[potion_type].strip("\n"),potions[potion_type +1].strip("\n"))
     print(f"You discover a {potion.item}")
     return potion
