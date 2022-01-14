@@ -8,26 +8,24 @@ from Classes import Player, Potion, Weapon
 
 
 #Theese two are gonna be for saving the game and stuff (exciting)
-def load_game():
-    print("nothing here yet")
-
-def game_menu():
-    print("nothing here yet")
 
 def intro():
-    title = input("Skip title screen? [y/n] :").casefold()
-    if title == "n":
-        f = open("title_card.txt")
-        lines = f.readlines()
-        for i in range(len(lines)):
-            content = lines[i].strip("\n")
-            print(content)
-            time.sleep(0.5)
-        f.close
-    elif title == "y":
-        print("")
-    else:
-        print("invalid input")
+    while True:
+        title = input("Skip title screen? [y/n] :").casefold()
+        if title == "n":
+            f = open("title_card.txt")
+            lines = f.readlines()
+            for i in range(len(lines)):
+                content = lines[i].strip("\n")
+                print(content)
+                time.sleep(0.5)
+            f.close
+            break
+        elif title == "y":
+            print("")
+            break
+        else:
+            print("invalid input")
 
     name = input("\n\nWhat is your name traveler? :")
     rusty_sword = Weapon("Rusty Shortsword","It's a rusty old sword you found on the ground...",1)
@@ -49,7 +47,7 @@ def main_room(player1):
     while player1.HP >= 1 and player1.LVL <= 9 and player1.inv[0].type=="torch":
         #Generates the doors, if the player has one HP left they can't get a trap (cuz that would kinda suck)
         if player1.HP > 1:
-            door1 = 2 #rand.randint(1,3)
+            door1 = rand.randint(1,3)
             door2 = rand.randint(1,3)
             door3 = rand.randint(1,3)
         else:
@@ -57,7 +55,7 @@ def main_room(player1):
             door2 = rand.randint(1,2)
             door3 = rand.randint(1,2)
 
-        print("\n~~~Dungeon room(or something more creative later on)~~~\n\n1 Explore [E]    2 Check stats [S]\n3 Check backpack [B]")
+        print("\n~~~Dungeon room~~~\n\n1 Explore [E]    2 Check stats [S]\n3 Check backpack [B]")
         goto = input("\nSelect menu option :").lower()
         #Each of the menu options sends you away to a different function
         if goto == "e":
@@ -99,9 +97,6 @@ def main_room(player1):
                 print("\nIt makes a loud creaking sound as you push it open...")
                 time.sleep(1)
                 warp_room(player1,door3)
-
-            elif door == "1": #test för item room ska tas bort när vi är klara
-                warp_room(player1,1)
             else:
                 print("invalid input!")
                 time.sleep("2")
@@ -113,10 +108,55 @@ def main_room(player1):
         else:
             print("invalid input!")
             time.sleep(2)
-    if player1.LVL ==10:
-        print("lol u won")
-    else:
-        print("lol u dieded")
+    endgame(player1)
+#
+
+def endgame(player1):
+    if player1.HP <= 0:
+        print(f"Well you had a good run {player1.name}")
+        time.sleep(2)    
+        print("...")
+        time.sleep(2)
+        print("...")
+        time.sleep(2)
+        print("The struggle for survival is over.")
+        time.sleep(3)
+        print("you can rest now.")
+        time.sleep(3)
+        print("\n\nGame Over")
+    elif player1.HP > 0 and player1.LVL >= 10:
+        print(f"Congrats {player1.name}, you beat the dungeon")
+        time.sleep(3)
+        print("The odds where against you, but you managed to pull through")
+        time.sleep(3)
+        print("you see it, the final door. Right by the end of the corridor.")
+        time.sleep(3)
+        print("you're finnaly strong enough to leave this wretched place.")
+        time.sleep(3)
+        print("Time stands still, you walk for what seems like an eternity")
+        for i in range(3):
+            time.sleep(2)
+            print("...")
+        time.sleep(2)
+        print("You finnaly reach it.")
+        time.sleep(1)
+        print("It wont budge...")
+        time.sleep(2)
+        print("it cant be....")
+        time.sleep(2)
+        print("this was supposed to be it....")
+        time.sleep(2)
+        print("a trapdoor flings open, sending you down in to darkness")
+        time.sleep(3)
+        print("\n\nWhen you open your eyes, the first thing you see is blue.")
+        time.sleep(3)
+        print("Its the sky...")
+        time.sleep(2)
+        print("you quickly stand up and look around. you're in the middle of a large grass field")
+        time.sleep(4)
+        print("You realize all your posessions are gone as you listen to the wind whistle through the grass.")
+        time.sleep(3)
+        print("\n\nfarewell, brave adventurer")
     f = open("Title_Card.txt")
     lines = f.readlines()
     for i in range(len(lines)):
@@ -124,7 +164,6 @@ def main_room(player1):
         print(content)
         time.sleep(0.5)
     f.close
-#
 def warp_room(player1, door):
     if door == 1:
         item_room(player1)
