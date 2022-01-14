@@ -3,7 +3,7 @@ import random as rand
 from Classes import Monster
 from pain import pain_room
 def monster_room(player1):
-    monster_type = ["slime","Ingvar Kamprad","dragon","troll","undead","demon","golem"] #List of all monster types
+    monster_type = ["slime","Ingvar Kamprad","dragon","troll","skeleton","demon","golem"] #List of all monster types
     #The strength_index determines weater the player will encounter a weaker or a stronger monster.
     strength_index = rand.randint(1,6)
     if strength_index > 5:
@@ -60,15 +60,6 @@ def battle_room(player1, monster):
                 else:
                     f = open("MonsterDmg.txt")
                     damage ="y"
-    #"story checklist"
-    #dragon DONE
-    #demon DONE
-    #slime DONE
-    #ingvar kamprad DONE
-    #troll
-    #undead
-    #Mimic DONE
-    #golem DONE
 
     #Depending on the monster, we select wich story to read. We do not need to account for
     #loss or victory since the stories are the same legnth in both the winn and lose document (one of which was opened earlier)
@@ -91,10 +82,16 @@ def battle_room(player1, monster):
             elif monster.type == "Invar Kamprad":
                 story_start = 30
                 story_duration = 5
+            elif monster.type == "troll":
+                story_start = 36
+                story_duration = 4
+            elif monster.type == "skeleton":
+                story_start = 41
+                story_duration = 7
             else:
-                print("Under construction")
-                story_start = 0
-                story_duration = 3
+                print("ERROR")
+                story_start = 49
+                story_duration = 4
 
             for i in range(story_duration):
                 print(lines[story_start+i])
