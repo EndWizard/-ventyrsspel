@@ -28,7 +28,7 @@ class Player():
     def __init__(self, name):
         self.HP = 10
         self.STR = 3
-        self.LVL = 10
+        self.LVL = 0
         self.eqipped = 0
         self.inv = []
         self.name = name
