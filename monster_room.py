@@ -79,7 +79,7 @@ def battle_room(player1, monster):
             elif monster.type == "Mimic":
                 story_start =25
                 story_duration = 4
-            elif monster.type == "Invar Kamprad":
+            elif monster.type == "Ingvar Kamprad":
                 story_start = 30
                 story_duration = 5
             elif monster.type == "troll":
