@@ -7,7 +7,6 @@ from trap import trap_room
 from Classes import Player, Potion, Weapon
 
 
-#Theese two are gonna be for saving the game and stuff (exciting)
 
 def intro():
     while True:
@@ -18,7 +17,7 @@ def intro():
             for i in range(len(lines)):
                 content = lines[i].strip("\n")
                 print(content)
-                time.sleep(0.5)
+                time.sleep(0.3)
             f.close
             break
         elif title == "y":
@@ -36,16 +35,16 @@ def intro():
     player1.inv[0].type = "torch"
     time.sleep(1)
     print("\nYou find yourself in a dark room.")
-    time.sleep(1)
+    time.sleep(2)
     print("A flickering torch is sitting on the wall, you grab it\n")
-    time.sleep(1)
+    time.sleep(3)
     main_room(player1)
 
 def main_room(player1):
     
     #If you're not dead (wich you proabably are) this will be the main menu
     while player1.HP >= 1 and player1.LVL <= 9 and player1.inv[0].type=="torch":
-        #Generates the doors, if the player has one HP left they can't get a trap (cuz that would kinda suck)
+        #Generates the doors, if the player has one HP left they can't get a trap (We're cruel, but not that cruel)
         if player1.HP > 1:
             door1 = rand.randint(1,3)
             door2 = rand.randint(1,3)
@@ -62,7 +61,7 @@ def main_room(player1):
             time.sleep(1)
             print("\n you approach three doors.")
             time.sleep(1)
-            if player1.x_ray==True:
+            if player1.x_ray==True: #If the player consumes "potion of seeing" it will print out what's behind all the doors.
                 rooms= ["chest standing on a pedestal","monster wandering around","weird mechanism that seems strangely intimidating"]
                 print(f"\nbehind the left door you see a {rooms[door1-1]}")
                 time.sleep(1)
@@ -70,9 +69,9 @@ def main_room(player1):
                 time.sleep(1)
                 print(f"behind the right door you see a {rooms[door3-1]}\n")
                 time.sleep(1)
-                player1.x_ray=False
+                player1.x_ray=False #Potion effect "wears off"(set to false), after use.
             door = input("Wich one will you choose? [Left/Middle/Right] :").lower()
-            if door == "left" or door == "l":
+            if door == "left" or door == "l": #Player is sent to the door they choose (See:Warp_room)
                 time.sleep(1)
                 door_ascii()
                 print("\nYou approach the left door.")
@@ -109,9 +108,17 @@ def main_room(player1):
             print("invalid input!")
             time.sleep(2)
     endgame(player1)
-#
+
 
 def endgame(player1):
+    if player1.inv[0].type != "torch":
+        time.sleep(2)
+        print("You fumble around a bit in the dark")
+        time.sleep(2)
+        print("But ultimatly you trip on a rock.")
+        time.sleep(3)
+        print("\nGame Over")
+
     if player1.HP <= 0:
         print(f"Well you had a good run {player1.name}")
         time.sleep(2)    
@@ -162,9 +169,9 @@ def endgame(player1):
     for i in range(len(lines)):
         content = lines[i].strip("\n")
         print(content)
-        time.sleep(0.5)
+        time.sleep(0.3)
     f.close
-def warp_room(player1, door):
+def warp_room(player1, door): #Player is sent here with a door(the door stores a number coresponding to different rooms)
     if door == 1:
         item_room(player1)
     elif door == 2:
@@ -173,21 +180,17 @@ def warp_room(player1, door):
         trap_room(player1)
 
 
-
-
 def stats(player1):
     print(f"Name = {player1.name}")
     print(f"Level = {player1.LVL}")
     print(f"Health = {player1.HP} hp")
-    print(f"Strength (total) = {player1.STR + player1.eqipped.strength} str")
-    print(f"Body = {player1.STR} STR")
-    print(f"Weapon = {player1.eqipped.strength} STR")
+    print(f"Body Strength = {player1.STR} STR")
+    print(f"Weapon Strength= {player1.eqipped.strength} STR")
+    print(f"Total Strength = {player1.STR + player1.eqipped.strength} str")
+    time.sleep(4)
 
 
-#A bunch of generation stuff down here (and some other small functions)
-
-
-def door_ascii():
+def door_ascii(): #Hey! Its a door! Open it.
     door_content = open("door.txt")
     door = door_content.read()
     print(door)
