@@ -3,7 +3,7 @@ import random as rand
 from Classes import Monster
 from pain import pain_room
 def monster_room(player1):
-    monster_type = ["slime","Ingvar Kamprad","dragon","troll","skeleton","demon","golem"] #List of all monster types
+    monster_type = ["slime","Ingvar Kamprad","dragon","troll","skeleton","demon","golem","U̴̩̺̭͕̱̤͌̀͂ͅñ̸̺͕̃̄k̷̡̲̩̜̜͍͎̖̟͊ņ̴̨̡͕̲̭̮̝̣̌̈́͐̒̑͠o̶̡̦͙̯̭̭̥̪̲͋̊̐͐̿̄͛͜͝ŵ̷̛̛̗̞̘̱̞̃̈͗̕͘ͅn̵̝̳͚̹̈̿̓̈́ ̵̭̬͙̱͚́̑E̷̙̖͇̤͚̜̮̺͎͂̀́ṇ̵̟͔͠t̶̡̯̤̲͕͙̖̝̐͒͑̈͛͆͂̎̚i̴͖̻͎͕͔̼͚̬̒̔͊̓͛̓̈́t̴̬̠͕̼̭̾ͅẙ̶̫̱̮̃͗̈́̅̆̕͜͝"] #List of all monster types
     #The strength_index determines weater the player will encounter a weaker or a stronger monster.
     strength_index = rand.randint(1,6)
     if strength_index > 5:
@@ -11,7 +11,7 @@ def monster_room(player1):
     else:
         enemy_str = player1.STR + rand.randint(-1,6)
     #Finnaly, the enemy is created by selecting a random monster type + giving it the strength previosuly generated
-    enemy = Monster(monster_type[rand.randint(0,6)],enemy_str) 
+    enemy = Monster(monster_type[rand.randint(0,7)],enemy_str) 
     battle_room(player1,enemy)
     return
 
