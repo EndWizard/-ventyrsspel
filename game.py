@@ -1,3 +1,4 @@
+from ast import Try
 import random as rand
 import time
 from monster_room import monster_room, battle_room
@@ -5,8 +6,6 @@ from backpack import backpack
 from loot import item_room
 from trap import trap_room
 from Classes import Player, Potion, Weapon
-
-
 
 def intro():
     while True:
@@ -62,7 +61,7 @@ def main_room(player1):
             print("\n you approach three doors.")
             time.sleep(1)
             if player1.x_ray==True: #If the player consumes "potion of seeing" it will print out what's behind all the doors.
-                rooms= ["chest standing on a pedestal","monster wandering around","weird mechanism that seems strangely intimidating"] 
+                rooms= ["chest standing on a pedestal","chest standing on a pedestal","monster wandering around","monster wandering around","weird mechanism that seems strangely intimidating"] 
                 print(f"\nbehind the left door you see a {rooms[door1-1]}")
                 time.sleep(1)
                 print(f"behind the middle door you see a {rooms[door2-1]}")
@@ -98,12 +97,26 @@ def main_room(player1):
                 warp_room(player1,door3)
             else:
                 print("invalid input!")
-                time.sleep("2")
+                time.sleep(2)
                 return
         elif goto == "b":
             backpack(player1)
         elif goto == "s":
             stats(player1)
+        elif goto == "xray_cheat": #Some "cheat codes" to simplify testing
+            player1.x_ray = True
+            print("xray now on")
+            time.sleep(1)
+        elif goto == "hp_cheat":
+            pain = int(input("Select pain :"))
+            player1.HP = pain
+            print("you changed HP")
+            time.sleep(1)
+        elif goto == "lvl_cheat":
+            lvl = int(input("Select level (!!!MAX 10!!!) :"))
+            player1.LVL = lvl
+            print("you chaged level")
+            time.sleep(1)
         else:
             print("invalid input!")
             time.sleep(2)
