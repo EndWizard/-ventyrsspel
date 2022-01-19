@@ -46,13 +46,13 @@ def main_room(player1):
     while player1.HP >= 1 and player1.LVL <= 9 and player1.inv[0].type=="torch":
         #Generates the doors, if the player has one HP left they can't get a trap (We're cruel, but not that cruel)
         if player1.HP > 1:
-            door1 = rand.randint(1,3)
-            door2 = rand.randint(1,3)
-            door3 = rand.randint(1,3)
+            door1 = rand.randint(1,5)
+            door2 = rand.randint(1,5)
+            door3 = rand.randint(1,5)
         else:
-            door1 = rand.randint(1,2)
-            door2 = rand.randint(1,2)
-            door3 = rand.randint(1,2)
+            door1 = rand.randint(1,4)
+            door2 = rand.randint(1,4)
+            door3 = rand.randint(1,4)
 
         print("\n~~~Dungeon room~~~\n\n1 Explore [E]    2 Check stats [S]\n3 Check backpack [B]")
         goto = input("\nSelect menu option :").lower()
@@ -62,7 +62,7 @@ def main_room(player1):
             print("\n you approach three doors.")
             time.sleep(1)
             if player1.x_ray==True: #If the player consumes "potion of seeing" it will print out what's behind all the doors.
-                rooms= ["chest standing on a pedestal","monster wandering around","weird mechanism that seems strangely intimidating"]
+                rooms= ["chest standing on a pedestal","monster wandering around","weird mechanism that seems strangely intimidating"] 
                 print(f"\nbehind the left door you see a {rooms[door1-1]}")
                 time.sleep(1)
                 print(f"behind the middle door you see a {rooms[door2-1]}")
@@ -172,11 +172,11 @@ def endgame(player1):
         time.sleep(0.3)
     f.close
 def warp_room(player1, door): #Player is sent here with a door(the door stores a number coresponding to different rooms)
-    if door == 1:
+    if door <=2:
         item_room(player1)
-    elif door == 2:
+    elif 3 <= door <= 4:
         monster_room(player1)
-    elif door == 3:
+    elif door == 5:
         trap_room(player1)
 
 
